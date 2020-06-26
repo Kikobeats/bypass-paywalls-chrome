@@ -60,20 +60,14 @@ if (matchDomain('rep.repubblica.it')) {
   const paywall = document.querySelector('.article__component.article__component--paywall-module-notification');
   removeDOMElement(paywall);
 } else if (matchDomain('washingtonpost.com')) {
-  if (window.location.href.includes('/gdpr-consent/')) {
     const freeButton = document.querySelector('.gdpr-consent-container .continue-btn.button.free');
-    if (freeButton) { freeButton.click(); }
-
-    setTimeout(function () {
-      const gdprcheckbox = document.querySelector('.gdpr-consent-container .consent-page:not(.hide) #agree');
-      if (gdprcheckbox) {
-        gdprcheckbox.checked = true;
-        gdprcheckbox.dispatchEvent(new Event('change'));
-
-        document.querySelector('.gdpr-consent-container .consent-page:not(.hide) .continue-btn.button.accept-consent').click();
-      }
-    }, 300); // Delay (in milliseconds)
-  }
+    if (freeButton) freeButton.click();
+    const gdprcheckbox = document.querySelector('.gdpr-consent-container .consent-page:not(.hide) #agree');
+    if (gdprcheckbox) {
+      gdprcheckbox.checked = true;
+      gdprcheckbox.dispatchEvent(new Event('change'));
+      document.querySelector('.gdpr-consent-container .consent-page:not(.hide) .continue-btn.button.accept-consent').click();
+    }
 } else if (matchDomain('wsj.com')) {
   if (window.location.href.includes('/articles/')) {
     const closeButton = document.querySelector('div.close-btn[role="button"]');
